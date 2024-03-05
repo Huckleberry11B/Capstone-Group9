@@ -1,41 +1,34 @@
 import React, { useState } from 'react';
 
-const RegistrationForm = ({token, setToken}) => {
-  
+const RegistrationForm = ({ token, setToken }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
 
-  
-const handleSubmit = async (e)=> {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     try {
-      const response = await fetch(//API URL HERE,{
-         method: "POST",
-         headers: {
-          "Content-Type": "application/json"
-         },
-         body: JSON.stringify({
+      const response = await fetch('dummyUrl' /* TODO: CHANGE ME */, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           email: email,
-          password: password
-         })
-      })
+          password: password,
+        }),
+      });
       const result = await response.json();
-       console.log(result)
-       console.log(result.success)
-       setToken(result.token)
-  } catch (error){
-      setError(error.message)
-  }
-    
-  
-
-  
-}
+      console.log(result);
+      console.log(result.success);
+      setToken(result.token);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   return (
     <div>

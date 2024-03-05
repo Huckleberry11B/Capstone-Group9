@@ -5,24 +5,24 @@ import email_icon from '../assets/email.png';
 import password_icon from '../assets/password.png';
 
 const Login = ({ setToken }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
   const { action } = useParams();
 
   const handleAction = async (e) => {
     e.preventDefault();
-    setError(""); 
-    
+    setError('');
+
     try {
-      const apiUrl = action === "register" ? //API URL HERE
-      
+      const apiUrl = action === 'register' ? 'dummy URL' : '';
+
       const response = await fetch(apiUrl, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           email: email,
@@ -43,15 +43,17 @@ const Login = ({ setToken }) => {
     }
   };
 
-  const title = action === "login" ? "Login" : "Signup";
+  const title = action === 'login' ? 'Login' : 'Signup';
 
   return (
-    <form onSubmit={handleAction} className='container'>
-      <div className='header'>
+    <form onSubmit={handleAction} className="container">
+      <div className="header">
         <div className="text">{title}</div>
         <div className="underline"></div>
       </div>
-      {successMessage && <div className="success-message">{successMessage}</div>}
+      {successMessage && (
+        <div className="success-message">{successMessage}</div>
+      )}
       <div className="inputs">
         <div className="input">
           <img src={email_icon} alt="" />
